@@ -1,0 +1,16 @@
+/* src/styles/theme.css */
+
+:root {
+  --primary: #60a5fa;
+  --secondary: #6ee7b7;
+  --accent: #c4b5fd;
+  --bg: #fafaf9;
+  --text: #1f2937;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
