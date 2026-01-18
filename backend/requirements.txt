@@ -6,4 +6,3 @@ pytesseract
 opencv-python-headless
 groq
 python-multipart
-cv2
