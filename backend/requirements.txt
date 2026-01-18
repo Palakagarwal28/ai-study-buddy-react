@@ -3,6 +3,7 @@ uvicorn
 python-dotenv
 pillow
 pytesseract
-opencv-python
+opencv-python-headless
 groq
 python-multipart
+cv2
