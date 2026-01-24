@@ -4,4 +4,4 @@ python-dotenv
 pytesseract
 pillow
 groq
-opencv-python
+opencv-python-headless

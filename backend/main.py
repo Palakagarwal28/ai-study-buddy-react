@@ -363,29 +363,28 @@ Use this exact format:
 @app.post("/study/image")
 async def study_from_image(file: UploadFile = File(...)):
     try:
-        print("📸 Image received:", file.filename)
+        print("📸 Received image:", file.filename)
 
-        # Read image
-        image_bytes = await file.read()
-        image = Image.open(io.BytesIO(image_bytes))
-        print("🖼️ Image opened")
+        contents = await file.read()
+        image = Image.open(io.BytesIO(contents))
 
-        # OCR
+        print("🖼 Image loaded")
+
         extracted_text = pytesseract.image_to_string(image)
-        print("📄 Extracted text:", extracted_text[:100])
+
+        print("📄 OCR output:", extracted_text)
 
         if not extracted_text.strip():
             return {
-                "explanation": "No readable text detected in the image."
+                "explanation": "No readable text found in the image."
             }
 
-        # LLM
         response = client.chat.completions.create(
             model="llama-3.1-8b-instant",
             messages=[
                 {
                     "role": "system",
-                    "content": "You are an AI study assistant. Explain concepts simply."
+                    "content": "Explain the text extracted from the image simply for a student."
                 },
                 {
                     "role": "user",
@@ -395,7 +394,6 @@ async def study_from_image(file: UploadFile = File(...)):
         )
 
         explanation = response.choices[0].message.content
-        print("✅ Explanation generated")
 
         return {
             "extracted_text": extracted_text,
@@ -403,7 +401,9 @@ async def study_from_image(file: UploadFile = File(...)):
         }
 
     except Exception as e:
-        print("❌ IMAGE EXPLAIN ERROR:", e)
+        print("❌ IMAGE PROCESSING FAILED:", e)
         return {
-            "explanation": "Error processing image."
+            "explanation": f"Image processing failed: {str(e)}"
         }
+
+   
