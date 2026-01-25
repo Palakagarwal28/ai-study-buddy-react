@@ -5,6 +5,7 @@ pytesseract
 pillow
 groq
 opencv-python-headless
+bcrypt==4.0.1
 passlib[bcrypt]
 python-jose
 python-dotenv
