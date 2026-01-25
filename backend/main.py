@@ -9,7 +9,9 @@ from pydantic import BaseModel
 import json
 from pydantic import BaseModel
 from PIL import Image
-
+from auth import router as auth_router
+from database import engine
+from models import Base
 import cv2
 import numpy as np
 
@@ -17,6 +19,10 @@ import numpy as np
 
 # Initialize FastAPI
 app = FastAPI()
+
+Base.metadata.create_all(bind=engine)
+
+app.include_router(auth_router)
 
 # Enable CORS (frontend connection)
 app.add_middleware(
@@ -110,20 +116,23 @@ def root():
 async def generate_summary(request: StudyRequest):
     text = request.text
 
-    summary_prompt = f"""
-Summarize the following study text clearly and concisely.
+    prompt = f"""
+    Explain the following topic in deep detail.
 
-Rules:
-- Use simple student-friendly language
-- Do NOT ask questions
-- Do NOT add examples unless necessary
-- Focus only on key points
-- Use bullet points
-- Limit to 5–7 bullets
+    Include:
+    - definition
+    - history
+    - main concepts
+    - tools and libraries
+    - real world uses
+    - examples
+    - advantages and disadvantages
 
-Text:
-{text}
-"""
+    Write in structured sections with headings.
+
+    Topic:
+    {text}
+    """
 
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",

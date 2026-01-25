@@ -5,3 +5,7 @@ pytesseract
 pillow
 groq
 opencv-python-headless
+passlib[bcrypt]
+python-jose
+python-dotenv
+sqlalchemy
