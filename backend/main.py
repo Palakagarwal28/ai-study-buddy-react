@@ -22,9 +22,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:5173",
-        "https://ai-study-buddy-react-417818819-palak-agarwals-projects-40c33464.vercel.app",
-        "https://ai-study-buddy-react.vercel.app"
+        "https://ai-study-buddy-react.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
