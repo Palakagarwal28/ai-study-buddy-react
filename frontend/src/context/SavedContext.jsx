@@ -1,30 +1,25 @@
 import React, { createContext, useContext, useState } from "react";
 
-const SavedContext = createContext(null);
+const SavedContext = createContext();
 
 export function SavedProvider({ children }) {
   const [savedItems, setSavedItems] = useState([]);
 
-  function saveItem(item) {
+  const saveItem = (item) => {
     setSavedItems((prev) => [...prev, item]);
-  }
-
-  function removeItem(id) {
-    setSavedItems((prev) => prev.filter((i) => i.id !== id));
-  }
+  };
 
   return (
-    <SavedContext.Provider
-      value={{
-        savedItems,
-        saveItem,
-        removeItem,
-      }}
-    >
+    <SavedContext.Provider value={{ savedItems, saveItem }}>
       {children}
     </SavedContext.Provider>
   );
 }
+
+export function useSaved() {
+  return useContext(SavedContext);
+}
+
 
 
 export function useSaved() {
