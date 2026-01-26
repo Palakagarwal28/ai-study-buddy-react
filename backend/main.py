@@ -30,9 +30,9 @@ from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://ai-study-buddy-react-50svuwxet-palak-agarwals-projects-40c33464.vercel.app",
-        "https://ai-study-buddy-react-git-main-palak-agarwals-projects-40c33464.vercel.app",
         "http://localhost:5173",
+        "https://ai-study-buddy-react-99vf27y84-palak-agarwals-projects-40c33464.vercel.app",
+        "https://ai-study-buddy-react.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
