@@ -10,7 +10,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-    async function handleLogin(e) {
+  async function handleLogin(e) {
       e.preventDefault();
     
       setError("");
