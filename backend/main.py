@@ -27,17 +27,19 @@ app.include_router(auth_router)
 # Enable CORS (frontend connection)
 from fastapi.middleware.cors import CORSMiddleware
 
+origins = [
+    "http://localhost:5173",
+    "https://ai-study-buddy-react.vercel.app",
+    "https://*.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "https://ai-study-buddy-react-99vf27y84-palak-agarwals-projects-40c33464.vercel.app",
-        "https://ai-study-buddy-react.onrender.com",
-    ],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)
+
 
 
 @app.options("/{path:path}")
