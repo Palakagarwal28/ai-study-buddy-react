@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const SavedContext = createContext();
 
@@ -18,18 +18,6 @@ export function SavedProvider({ children }) {
 
 export function useSaved() {
   return useContext(SavedContext);
-}
-
-
-
-export function useSaved() {
-  const context = useContext(SavedContext);
-
-  if (!context) {
-    throw new Error("useSaved must be used inside SavedProvider");
-  }
-
-  return context;
 }
 
 
