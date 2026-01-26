@@ -5,7 +5,11 @@ import "./index.css"; // ← REQUIRED
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>
+      <SavedProvider>
+        <App />
+      </SavedProvider>
+    </AuthProvider>
   </React.StrictMode>
 );
 
