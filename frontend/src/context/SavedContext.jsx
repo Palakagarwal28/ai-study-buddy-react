@@ -1,19 +1,40 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 
-export const SavedContext = createContext(null);
+const SavedContext = createContext(null);
 
 export function SavedProvider({ children }) {
-  const [saved, setSaved] = useState([]);
+  const [savedItems, setSavedItems] = useState([]);
 
-  const saveItem = (item) => {
-    setSaved((prev) => [...prev, item]);
-  };
+  function saveItem(item) {
+    setSavedItems((prev) => [...prev, item]);
+  }
+
+  function removeItem(id) {
+    setSavedItems((prev) => prev.filter((i) => i.id !== id));
+  }
 
   return (
-    <SavedContext.Provider value={{ saved, saveItem }}>
+    <SavedContext.Provider
+      value={{
+        savedItems,
+        saveItem,
+        removeItem,
+      }}
+    >
       {children}
     </SavedContext.Provider>
   );
+}
+
+
+export function useSaved() {
+  const context = useContext(SavedContext);
+
+  if (!context) {
+    throw new Error("useSaved must be used inside SavedProvider");
+  }
+
+  return context;
 }
 
 
