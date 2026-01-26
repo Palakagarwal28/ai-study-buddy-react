@@ -38,7 +38,7 @@ export default function App() {
             </ProtectedRoute>
           }
         >
-          <Route path="/" element={<Home />} />
+        
           <Route path="summary" element={<SummaryView />} />
           <Route path="quiz" element={<QuizView />} />
           <Route path="flashcards" element={<FlashcardView />} />
