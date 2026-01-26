@@ -12,3 +12,5 @@ python-jose
 python-dotenv
 sqlalchemy
 pydantic[email]
+python-multipart
+httpx
