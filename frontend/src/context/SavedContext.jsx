@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
-const SavedContext = createContext();
+export const SavedContext = createContext(null);
 
 export function SavedProvider({ children }) {
   const [saved, setSaved] = useState([]);
@@ -16,8 +16,5 @@ export function SavedProvider({ children }) {
   );
 }
 
-export function useSaved() {
-  return useContext(SavedContext);
-}
 
 
