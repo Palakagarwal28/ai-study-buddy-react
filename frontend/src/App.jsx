@@ -1,15 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-import Saved from "./Pages/Saved";
-import AppPage from "./Pages/AppPage";
-import AppLayout from "./App/AppLayout";
 
-import { AuthProvider } from "./context/AuthContext";
-import { SavedProvider } from "./context/SavedContext";
+import AppLayout from "./App/AppLayout";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 import SummaryView from "./components/SummaryView";
@@ -18,7 +14,9 @@ import FlashcardView from "./components/FlashcardView";
 import MathSolverView from "./components/MathSolverView";
 import ImageUpload from "./components/ImageUpload";
 import YouTubeView from "./components/YouTubeView";
-import SavedSearches from "./components/SavedSearches";
+
+import { AuthProvider } from "./context/AuthContext";
+import { SavedProvider } from "./context/SavedContext";
 
 export default function App() {
   return (
@@ -26,15 +24,12 @@ export default function App() {
       <SavedProvider>
         <BrowserRouter>
           <Routes>
-
-            {/* Default Redirect */}
-            <Route path="/" element={<Navigate to="/login" />} />
-
-            {/* Auth Pages */}
+            {/* Public routes */}
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
-            {/* Protected App Routes */}
+            {/* Protected routes */}
             <Route
               path="/app"
               element={
@@ -49,15 +44,14 @@ export default function App() {
               <Route path="math" element={<MathSolverView />} />
               <Route path="image" element={<ImageUpload />} />
               <Route path="youtube" element={<YouTubeView />} />
-              <Route path="saved" element={<SavedSearches />} />
             </Route>
-
           </Routes>
         </BrowserRouter>
       </SavedProvider>
     </AuthProvider>
   );
 }
+
 
 
 
