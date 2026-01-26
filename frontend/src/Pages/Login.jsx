@@ -10,40 +10,39 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  async function handleLogin(e) {
-    e.preventDefault();
-
-    setError("");
-    setLoading(true);
-
-    try {
-      const res = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.detail || "Login failed");
-        return;
+    async function handleLogin(e) {
+      e.preventDefault();
+    
+      setError("");
+      setLoading(true);
+    
+      try {
+        const res = await fetch(`${API_BASE_URL}/auth/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
+    
+        const data = await res.json();
+    
+        if (!res.ok) {
+          setError(data.detail || "Login failed");
+          return;
+        }
+    
+        localStorage.setItem("token", data.access_token);
+    
+        navigate("/app/summary");
+    
+      } catch (err) {
+        setError("Server not reachable");
+      } finally {
+        setLoading(false);
       }
-
-      // Save token
-      localStorage.setItem("token", data.access_token);
-
-      // Redirect to dashboard
-      navigate("/app/summary");
-
-    } catch (err) {
-      setError("Server not reachable");
-    } finally {
-      setLoading(false);
     }
-  }
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
