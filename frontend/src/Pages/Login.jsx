@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../config";
-
+import { useAuth } from "../context/AuthContext";
 export default function Login() {
   const navigate = useNavigate();
-
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -42,7 +43,7 @@ export default function Login() {
       }
 
       // SAVE TOKEN
-      localStorage.setItem("token", data.access_token);
+      login(data.access_token);
 
       console.log("TOKEN SAVED:", localStorage.getItem("token"));
 
