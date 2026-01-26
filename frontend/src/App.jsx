@@ -24,9 +24,10 @@ export default function App() {
       <Routes>
 
         {/* PUBLIC */}
-        <Route path="/" element={<Home />} />
+        
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        
 
         {/* PROTECTED */}
         <Route
@@ -37,6 +38,7 @@ export default function App() {
             </ProtectedRoute>
           }
         >
+          <Route path="/" element={<Home />} />
           <Route path="summary" element={<SummaryView />} />
           <Route path="quiz" element={<QuizView />} />
           <Route path="flashcards" element={<FlashcardView />} />
