@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { SavedProvider } from "./context/SavedContext";
-import { AuthProvider } from "./context/AuthContext";
+
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -16,40 +15,37 @@ import ImageUpload from "./components/ImageUpload";
 import YouTubeView from "./components/YouTubeView";
 import SavedSearches from "./components/SavedSearches";
 
-import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext";
+import { SavedProvider } from "./context/SavedContext";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <AuthProvider>
+      <SavedProvider>
+        <BrowserRouter>
+          <Routes>
 
-        {/* PUBLIC */}
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        
+            {/* PUBLIC */}
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
-        {/* PROTECTED */}
-        <Route
-          path="/app"
-          element={
-            <ProtectedRoute>
-              <AppLayout />
-            </ProtectedRoute>
-          }
-        >
-        
-          <Route path="summary" element={<SummaryView />} />
-          <Route path="quiz" element={<QuizView />} />
-          <Route path="flashcards" element={<FlashcardView />} />
-          <Route path="math" element={<MathSolverView />} />
-          <Route path="image" element={<ImageUpload />} />
-          <Route path="youtube" element={<YouTubeView />} />
-          <Route path="saved" element={<SavedSearches />} />
-        </Route>
+            {/* PRIVATE APP */}
+            <Route path="/app" element={<AppLayout />}>
+              <Route index element={<SummaryView />} />
+              <Route path="summary" element={<SummaryView />} />
+              <Route path="quiz" element={<QuizView />} />
+              <Route path="flashcards" element={<FlashcardView />} />
+              <Route path="math" element={<MathSolverView />} />
+              <Route path="image" element={<ImageUpload />} />
+              <Route path="youtube" element={<YouTubeView />} />
+              <Route path="saved" element={<SavedSearches />} />
+            </Route>
 
-      </Routes>
-    </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </SavedProvider>
+    </AuthProvider>
   );
 }
 
