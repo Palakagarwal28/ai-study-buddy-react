@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { SavedProvider } from "./context/SavedContext";
+import { AuthProvider } from "./context/AuthContext";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
-import { AuthProvider } from "./context/AuthContext";
+
 import AppLayout from "./App/AppLayout";
 
 import SummaryView from "./components/SummaryView";
