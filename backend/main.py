@@ -18,9 +18,7 @@ import numpy as np
 # Initialize FastAPI
 app = FastAPI()
 
-Base.metadata.create_all(bind=engine)
 
-app.include_router(auth_router)
 
 # Enable CORS (frontend connection)
 from fastapi.middleware.cors import CORSMiddleware
