@@ -13,23 +13,19 @@ import ImageUpload from "./components/ImageUpload";
 import YouTubeView from "./components/YouTubeView";
 import SavedSearches from "./components/SavedSearches";
 
-import { AuthProvider } from "./context/AuthContext";
-import { SavedProvider } from "./context/SavedContext";
+
 
 export default function App() {
   return (
-    <AuthProvider>
-      <SavedProvider>
+
         <BrowserRouter>
           <Routes>
 
             {/* PUBLIC */}
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
+            
 
-            {/* PRIVATE APP */}
-            <Route path="/app" element={<AppLayout />}>
+              <Route path="/app" element={<AppLayout />}>
               <Route index element={<SummaryView />} />
               <Route path="summary" element={<SummaryView />} />
               <Route path="quiz" element={<QuizView />} />
@@ -42,8 +38,7 @@ export default function App() {
 
           </Routes>
         </BrowserRouter>
-      </SavedProvider>
-    </AuthProvider>
+
   );
 }
 
