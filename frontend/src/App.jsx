@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./Pages/Home";
-
 import AppLayout from "./App/AppLayout";
 
 import SummaryView from "./components/SummaryView";
@@ -13,34 +12,31 @@ import ImageUpload from "./components/ImageUpload";
 import YouTubeView from "./components/YouTubeView";
 import SavedSearches from "./components/SavedSearches";
 
-
-
 export default function App() {
   return (
+    <BrowserRouter>
+      <Routes>
 
-        <BrowserRouter>
-          <Routes>
+        {/* PUBLIC */}
+        <Route path="/" element={<Home />} />
 
-            {/* PUBLIC */}
-            <Route path="/" element={<Home />} />
-            
+        {/* APP */}
+        <Route path="/app" element={<AppLayout />}>
+          <Route index element={<SummaryView />} />
+          <Route path="summary" element={<SummaryView />} />
+          <Route path="quiz" element={<QuizView />} />
+          <Route path="flashcards" element={<FlashcardView />} />
+          <Route path="math" element={<MathSolverView />} />
+          <Route path="image" element={<ImageUpload />} />
+          <Route path="youtube" element={<YouTubeView />} />
+          <Route path="saved" element={<SavedSearches />} />
+        </Route>
 
-              <Route path="/app" element={<AppLayout />}>
-              <Route index element={<SummaryView />} />
-              <Route path="summary" element={<SummaryView />} />
-              <Route path="quiz" element={<QuizView />} />
-              <Route path="flashcards" element={<FlashcardView />} />
-              <Route path="math" element={<MathSolverView />} />
-              <Route path="image" element={<ImageUpload />} />
-              <Route path="youtube" element={<YouTubeView />} />
-              <Route path="saved" element={<SavedSearches />} />
-            </Route>
-
-          </Routes>
-        </BrowserRouter>
-
+      </Routes>
+    </BrowserRouter>
   );
 }
+
 
 
 
