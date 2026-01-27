@@ -37,6 +37,7 @@ app.add_middleware(
         "http://localhost:5173",
         "http://localhost:3000",
         "https://ai-study-buddy-react.vercel.app",
+        "https://ai-study-buddy-react-f39bmyejl-palak-agarwals-projects-40c33464.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
