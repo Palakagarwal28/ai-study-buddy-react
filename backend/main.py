@@ -122,23 +122,20 @@ def root():
 async def generate_summary(request: StudyRequest):
     text = request.text
 
-    prompt = f"""
-    Explain the following topic in deep detail.
+    summary_prompt = f"""
+Summarize the following study text clearly and concisely.
 
-    Include:
-    - definition
-    - history
-    - main concepts
-    - tools and libraries
-    - real world uses
-    - examples
-    - advantages and disadvantages
+Rules:
+- Use simple student-friendly language
+- Do NOT ask questions
+- Do NOT add examples unless necessary
+- Focus only on key points
+- Use bullet points
+- Limit to 5–7 bullets
 
-    Write in structured sections with headings.
-
-    Topic:
-    {text}
-    """
+Text:
+{text}
+"""
 
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",
