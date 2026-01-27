@@ -9,8 +9,6 @@ from pydantic import BaseModel
 import json
 from pydantic import BaseModel
 from PIL import Image
-from auth import router as auth_router
-from database import engine
 from models import Base
 import cv2
 import numpy as np
