@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import React from "react";
+import { createContext, useContext, useState } from "react";
 
 const SavedContext = createContext();
 
@@ -6,7 +7,10 @@ export function SavedProvider({ children }) {
   const [savedItems, setSavedItems] = useState([]);
 
   const saveItem = (item) => {
-    setSavedItems((prev) => [...prev, item]);
+    setSavedItems((prev) => {
+      if (prev.find((i) => i.id === item.id)) return prev;
+      return [item, ...prev];
+    });
   };
 
   return (
