@@ -33,13 +33,21 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://localhost:3000",
+
+        # main vercel domain
         "https://ai-study-buddy-react.vercel.app",
-        "https://ai-study-buddy-react-f39bmyejl-palak-agarwals-projects-40c33464.vercel.app"
+
+        # ALL preview deployments
+        "https://ai-study-buddy-react-kuwpu7z8y-palak-agarwals-projects-40c33464.vercel.app",
+
+        # safer wildcard option
+        "https://*.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.include_router(study_router, prefix="/study")
 
 
 
