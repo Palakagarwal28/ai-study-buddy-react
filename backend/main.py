@@ -9,7 +9,7 @@ from pydantic import BaseModel
 import json
 from pydantic import BaseModel
 from PIL import Image
-from models import Base
+
 import cv2
 import numpy as np
 
